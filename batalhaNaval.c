@@ -4,11 +4,71 @@
 // Este código inicial serve como base para o desenvolvimento do sistema de Batalha Naval.
 // Siga os comentários para implementar cada parte do desafio.
 
+int nivel_novato(void) {
+
+    // ===== TABULEIRO 10x10 =====
+    int tabuleiro[10][10];
+
+    // Inicializa tudo com 0 (água)
+    for(int i = 0; i < 10; i++){
+        for(int j = 0; j < 10; j++){
+            tabuleiro[i][j] = 0;
+        }
+    }
+
+    // ===== NAVIOS (vetores) =====
+    int navioHorizontal[3] = {3, 3, 3};
+    int navioVertical[3] = {3, 3, 3};
+
+    // ===== POSIÇÕES INICIAIS =====
+    int linhaH = 1, colunaH = 2; // horizontal
+    int linhaV = 3, colunaV = 4; // vertical
+
+    // ===== VALIDAÇÃO (dentro do tabuleiro) =====
+    if(colunaH + 3 > 10 || linhaV + 3 > 10){
+        printf("Erro: Navio fora dos limites do tabuleiro.\n");
+        return 1;
+    }
+
+    // ===== POSICIONAR NAVIO HORIZONTAL =====
+    for(int i = 0; i < 3; i++){
+        // verifica sobreposição
+        if(tabuleiro[linhaH][colunaH + i] != 0){
+            printf("Erro: Sobreposição de navios.\n");
+            return 1;
+        }
+        tabuleiro[linhaH][colunaH + i] = navioHorizontal[i];
+    }
+
+    // ===== POSICIONAR NAVIO VERTICAL =====
+    for(int i = 0; i < 3; i++){
+        // verifica sobreposição
+        if(tabuleiro[linhaV + i][colunaV] != 0){
+            printf("Erro: Sobreposição de navios.\n");
+            return 1;
+        }
+        tabuleiro[linhaV + i][colunaV] = navioVertical[i];
+    }
+
+    // ===== EXIBIR TABULEIRO =====
+    printf("TABULEIRO:\n\n");
+
+    for(int i = 0; i < 10; i++){
+        for(int j = 0; j < 10; j++){
+            printf("%d ", tabuleiro[i][j]);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
+
 int main() {
     // Nível Novato - Posicionamento dos Navios
     // Sugestão: Declare uma matriz bidimensional para representar o tabuleiro (Ex: int tabuleiro[5][5];).
     // Sugestão: Posicione dois navios no tabuleiro, um verticalmente e outro horizontalmente.
     // Sugestão: Utilize `printf` para exibir as coordenadas de cada parte dos navios.
+    nivel_novato();
 
     // Nível Aventureiro - Expansão do Tabuleiro e Posicionamento Diagonal
     // Sugestão: Expanda o tabuleiro para uma matriz 10x10.
